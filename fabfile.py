@@ -6,7 +6,7 @@ from datetime import datetime
 
 from fabric.decorators import runs_once
 from collections.abc import Mapping
-from collections.abc import Mapping
+
 
 @runs_once
 def do_pack():
