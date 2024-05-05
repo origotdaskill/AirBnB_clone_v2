@@ -7,7 +7,7 @@ from datetime import datetime
 from fabric.api import env, local, put, run, runs_once
 
 
-env.hosts = ['52.201.219.251', '54.144.147.139']
+env.hosts = ['35.174.207.95', '54.160.106.66']
 
 
 @runs_once
@@ -47,13 +47,13 @@ def do_deploy(archive_path):
     success = False
     try:
         put(archive_path, "/tmp/{}".format(file_name))
-        run("mkdir -p {}".format(folder_path))
-        run("tar -xzf /tmp/{} -C {}".format(file_name, folder_path))
-        run("rm -rf /tmp/{}".format(file_name))
-        run("mv {}web_static/* {}".format(folder_path, folder_path))
-        run("rm -rf {}web_static".format(folder_path))
-        run("rm -rf /data/web_static/current")
-        run("ln -s {} /data/web_static/current".format(folder_path))
+        run("sudo mkdir -p {}".format(folder_path))
+        run("sudo tar -xzf /tmp/{} -C {}".format(file_name, folder_path))
+        run("sudo rm -rf /tmp/{}".format(file_name))
+        run("sudo mv {}web_static/* {}".format(folder_path, folder_path))
+        run("sudo rm -rf {}web_static".format(folder_path))
+        run("sudo rm -rf /data/web_static/current")
+        run("sudo ln -s {} /data/web_static/current".format(folder_path))
         print('New version is now LIVE!')
         success = True
     except Exception:
